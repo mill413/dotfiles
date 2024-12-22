@@ -1,0 +1,145 @@
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+
+"" General Settings
+
+" Colorscheme
+"colorscheme  molokai  
+"set t_Co=255
+"set background=dark
+
+set termguicolors
+
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_menu_selection_background = 'blue'
+let g:tokyonight_transparent_background = 0
+let g:airline_theme = "tokyonight"
+
+colorscheme tokyonight
+
+" Highlight current line and column
+set cursorline
+"highlight CursorLine cterm=NONE ctermbg=green guibg=lightgrey
+set cursorcolumn
+"highlight CursorColumn cterm=NONE ctermbg=white guibg=lightgrey
+
+" Use mouse
+set mouse=a
+
+" Move cursor cross lines
+set whichwrap=b,s,<,>,[,]
+
+" Show line number
+set number
+
+" Record cursor position
+augroup resCur
+  autocmd!
+  autocmd BufReadPost * call setpos(".", getpos("'\""))
+augroup END
+
+" Highlight search result
+set incsearch
+set hlsearch
+
+" Highlight Syntax
+syntax on
+filetype plugin on
+
+" Set cursor shape and color
+if &term =~ "xterm"
+    " INSERT mode
+    let &t_SI = "\<Esc>[5 q"
+    " REPLACE mode
+    let &t_SR = "\<Esc>[5 q"
+    " NORMAL mode
+    let &t_EI = "\<Esc>[5 q"
+endif
+
+" Auto indent
+set autoindent
+
+" Keymaps
+nnoremap <C-g> :Ag<CR>
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {}<ESC>i
+
+
+"" NERDTree
+let g:NERDTreeWinPos = "right"
+map <C-E> :NERDTreeToggle<CR>
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+
+"" Airline
+let g:airline_powerline_fonts=1
+let g:airline_theme='deus'
+
+
+"" Floaterm
+" let g:floaterm_wintype='split'
+" let g:floaterm_height=0.3
+" nnoremap <C-t> :FloatermToggle<CR>
+nnoremap <C-t> :execute 'FloatermNew --cwd=' . expand('%:p:h')<CR>
+
+
+" Rainbow Parentheses
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+
+"" Youcompleteme
+let g:ycm_enable_inlay_hints=1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_cache_omnifunc=0
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+"highlight Pmenu ctermfg=15 ctermbg=235
