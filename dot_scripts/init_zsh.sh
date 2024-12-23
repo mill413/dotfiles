@@ -5,10 +5,11 @@ show_help() {
     echo "Usage: $0 [OPTIONS]"
     echo
     echo "Options:"
-    echo "  -p, --path PATH    Specify the installation path of oh-my-zsh."
+    echo "  -p, --path _PATH    Specify the installation path of oh-my-zsh."
     echo "  -h, --help         Show this help message and exit."
     echo
     echo "If no path is provided, the script will search for oh-my-zsh in predefined locations."
+    echo "Script should be run under dotfiles/ ."
 }
 
 # Check arguments
@@ -42,13 +43,13 @@ SEARCH_PATHS=(
 
 # Iterate through the search paths to find oh-my-zsh installation
 INSTALL_PATH=""
-for PATH in "${SEARCH_PATHS[@]}"; do
-    if [ -n "$PATH" ] && [ -d "$PATH" ]; then
-        INSTALL_PATH="$PATH"
+for _PATH in "${SEARCH_PATHS[@]}"; do
+    if [ -n "$_PATH" ] && [ -d "$_PATH" ]; then
+        INSTALL_PATH="$_PATH"
         break
     fi
-    if [ -z "$PATH" ]; then
-        INSTALL_PATH=$(find "$PATH" -type d -name "oh-my-zsh" 2>/dev/null | /usr/bin/head -n 1)
+    if [ -z "$_PATH" ]; then
+        INSTALL_PATH=$(find "$_PATH" -type d -name "oh-my-zsh" 2>/dev/null | head -n 1)
         [ -n "$INSTALL_PATH" ] && break
     fi
 done
@@ -59,17 +60,19 @@ if [ -z "$INSTALL_PATH" ]; then
     exit 1
 fi
 
-# Define the .zshrc file path
-ZSHRC_FILE="$HOME/dotfiles/zsh/zshrc"
+# Define the zshrc file path
+ZSHRC_FILE="./zsh/zshrc"
 
-# Check if the .zshrc file exists
+# Check if the zshrc file exists
 if [ ! -f "$ZSHRC_FILE" ]; then
-    echo "Error: .zshrc file not found." >&2
+    echo "Error: zshrc file not found." >&2
     exit 1
 fi
 
-# Update the ZSH= line in the .zshrc file using /usr/bin/sed
-/usr/bin/sed -i.bak -E "s|^ZSH=.*$|ZSH=\"$INSTALL_PATH\"|" "$ZSHRC_FILE"
+# Update the ZSH= line in the zshrc file using /usr/bin/sed
+sed -i.bak -E "s|^ZSH=.*$|ZSH=\"$INSTALL_PATH\"|" "$ZSHRC_FILE"
 
 # Notify the user of the successful update
-echo ".zshrc file has been updated. ZSH variable is set to: $INSTALL_PATH"
+echo "zshrc file has been updated. ZSH variable is set to: $INSTALL_PATH"
+
+ln -sv "$PWD/zsh/zshrc" "$HOME/.zshrc"
