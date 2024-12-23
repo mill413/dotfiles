@@ -3,7 +3,7 @@ return { {
     build = ":TSUpdate",
     opts = {
         ensure_installed = { "vim", "bash", "c", "cpp", "javascript", "json", "lua", "python", "typescript", "tsx",
-            "css", "rust", "markdown", "markdown_inline", "java", "kotlin", "go" },
+            "css", "rust", "markdown", "markdown_inline", "java", "kotlin", "go", "latex" },
         sync_install = false,
         highlight = {
             enable = true
