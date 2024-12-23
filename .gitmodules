@@ -1,0 +1,3 @@
+[submodule "mpv/ModernZ"]
+	path = mpv/ModernZ
+	url = https://github.com/Samillion/ModernZ
