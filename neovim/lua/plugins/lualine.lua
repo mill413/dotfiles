@@ -8,6 +8,7 @@ return {
     dependencies = {'nvim-tree/nvim-web-devicons'},
     opts = {
         options = {
+            globalstatus = true,
             theme = "tokyonight"
             -- disabled_filetypes = {"NvimTree"}
         },
@@ -28,6 +29,12 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
+            }, {
+                "swenv",
+                cond = function()
+                    return vim.bo.filetype == "python"
+                end,
+                icon = ""
             }},
             lualine_c = {{
                 'filename',
@@ -55,10 +62,7 @@ return {
             lualine_x = {{
                 'datetime',
                 -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-                style = '%Y-%m-%d %H:%M:%S',
-                cond = function()
-                    return vim.bo.filetype ~= 'NvimTree'
-                end
+                style = '%Y-%m-%d %H:%M:%S'
 
             }},
             lualine_y = {{
