@@ -1,3 +1,6 @@
 [submodule "mpv/ModernZ"]
 	path = mpv/ModernZ
 	url = https://github.com/Samillion/ModernZ
+[submodule "mpv/thumbfast"]
+	path = mpv/thumbfast
+	url = https://github.com/po5/thumbfast
