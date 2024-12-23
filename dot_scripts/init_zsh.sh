@@ -48,7 +48,7 @@ for PATH in "${SEARCH_PATHS[@]}"; do
         break
     fi
     if [ -z "$PATH" ]; then
-        INSTALL_PATH=$(whereis -b oh-my-zsh | awk '{print $2}')
+        INSTALL_PATH=$(find "$PATH" -type d -name "oh-my-zsh" 2>/dev/null | /usr/bin/head -n 1)
         [ -n "$INSTALL_PATH" ] && break
     fi
 done
@@ -68,8 +68,8 @@ if [ ! -f "$ZSHRC_FILE" ]; then
     exit 1
 fi
 
-# Update the ZSH= line in the .zshrc file using sed
-sed -i.bak -E "s|^ZSH=.*$|ZSH="$INSTALL_PATH"|" "$ZSHRC_FILE"
+# Update the ZSH= line in the .zshrc file using /usr/bin/sed
+/usr/bin/sed -i.bak -E "s|^ZSH=.*$|ZSH=\"$INSTALL_PATH\"|" "$ZSHRC_FILE"
 
 # Notify the user of the successful update
 echo ".zshrc file has been updated. ZSH variable is set to: $INSTALL_PATH"
