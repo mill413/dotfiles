@@ -4,6 +4,9 @@ return {
     opts = {
         scope = {
             enabled = false
-        }
+        },
+        exclude = {
+            filetypes = { "dashboard" }
+        },
     }
 }
