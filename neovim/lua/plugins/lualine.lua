@@ -166,35 +166,35 @@ return {
                 end
             }, 'filetype'}
         },
-        winbar = {
-            lualine_c = {{
-                'filename',
-                file_status = false, -- Displays file status (readonly status, modified status)
-                newfile_status = false, -- Display new file status (new file means no write after created)
-                path = 0,
-                cond = function()
-                    return vim.bo.filetype ~= 'NvimTree'
-                end
-            }, {
-                "navic",
-                color_correction = "static",
-                navic_opts = nil
-            }}
-        },
-        inactive_winbar = {
-            lualine_c = {{
-                'filename',
-                file_status = false, -- Displays file status (readonly status, modified status)
-                newfile_status = false, -- Display new file status (new file means no write after created)
-                path = 0,
-                cond = function()
-                    return vim.bo.filetype ~= 'NvimTree'
-                end
-            }, {
-                "navic",
-                color_correction = "static",
-                navic_opts = nil
-            }}
-        }
+        -- winbar = {
+        --     lualine_c = {{
+        --         'filename',
+        --         file_status = false, -- Displays file status (readonly status, modified status)
+        --         newfile_status = false, -- Display new file status (new file means no write after created)
+        --         path = 0,
+        --         cond = function()
+        --             return vim.bo.filetype ~= 'NvimTree'
+        --         end
+        --     }, {
+        --         "navic",
+        --         color_correction = "static",
+        --         navic_opts = nil
+        --     }}
+        -- },
+        -- inactive_winbar = {
+        --     lualine_c = {{
+        --         'filename',
+        --         file_status = false, -- Displays file status (readonly status, modified status)
+        --         newfile_status = false, -- Display new file status (new file means no write after created)
+        --         path = 0,
+        --         cond = function()
+        --             return vim.bo.filetype ~= 'NvimTree'
+        --         end
+        --     }, {
+        --         "navic",
+        --         color_correction = "static",
+        --         navic_opts = nil
+        --     }}
+        -- }
     }
 }
