@@ -146,26 +146,27 @@ local nvimTreeFocusOrToggle = function()
 end
 
 -- Open nvim-treee in startup
-local function open_nvim_tree(data)
-    -- buffer is a real file on the disk
-    local real_file = vim.fn.filereadable(data.file) == 1
+-- local function open_nvim_tree(data)
+--     -- buffer is a real file on the disk
+--     local real_file = vim.fn.filereadable(data.file) == 1
 
-    -- buffer is a [No Name]
-    local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+--     -- buffer is a [No Name]
+--     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
-    if not real_file and not no_name then
-        return
-    end
+--     if not real_file and not no_name then
+--         return
+--     end
 
-    -- open the tree, find the file
-    require("nvim-tree.api").tree.toggle({
-        focus = no_name,
-        find_file = true,
-    })
-end
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    callback = open_nvim_tree,
-})
+--     -- open the tree, find the file
+--     require("nvim-tree.api").tree.toggle({
+--         focus = no_name,
+--         find_file = true,
+--     })
+-- end
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--     callback = open_nvim_tree,
+-- })
+
 
 -- Auto close TODO-关闭文件后不自动关闭tree
 vim.api.nvim_create_autocmd("BufEnter", {
