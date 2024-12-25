@@ -5,7 +5,7 @@ end
 
 return {
     'nvim-lualine/lualine.nvim',
-    dependencies = {'nvim-tree/nvim-web-devicons'},
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
         options = {
             globalstatus = true,
@@ -13,8 +13,8 @@ return {
             -- disabled_filetypes = {"NvimTree"}
         },
         sections = {
-            lualine_a = {'mode'},
-            lualine_b = {{
+            lualine_a = { 'mode' },
+            lualine_b = { {
                 'branch',
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -35,12 +35,12 @@ return {
                     return vim.bo.filetype == "python"
                 end,
                 icon = ""
-            }},
-            lualine_c = {{
+            } },
+            lualine_c = { {
                 'filename',
-                file_status = true, -- Displays file status (readonly status, modified status)
+                file_status = true,     -- Displays file status (readonly status, modified status)
                 newfile_status = false, -- Display new file status (new file means no write after created)
-                path = 3, -- 0: Just the filename
+                path = 3,               -- 0: Just the filename
                 -- 1: Relative path
                 -- 2: Absolute path
                 -- 3: Absolute path, with tilde as the home directory
@@ -49,23 +49,23 @@ return {
                 shorting_target = 40, -- Shortens path to leave 40 spaces in the window
                 -- for other components. (terrible name, any suggestions?)
                 symbols = {
-                    modified = '[+]', -- Text to show when the file is modified.
-                    readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
+                    modified = '[+]',      -- Text to show when the file is modified.
+                    readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
                     unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                    newfile = '[New]' -- Text to show for newly created file before first write
+                    newfile = '[New]'      -- Text to show for newly created file before first write
                 },
                 cond = function()
-                    return vim.bo.filetype ~= 'NvimTree'
+                    return vim.bo.filetype ~= 'NvimTree' and vim.bo.filetype ~= 'toggleterm'
                 end
 
-            }},
-            lualine_x = {{
+            } },
+            lualine_x = { {
                 'datetime',
                 -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
                 style = '%Y-%m-%d %H:%M:%S'
 
-            }},
-            lualine_y = {{
+            } },
+            lualine_y = { {
                 customLocation,
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -75,8 +75,8 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }},
-            lualine_z = {{
+            } },
+            lualine_z = { {
                 'encoding',
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -86,16 +86,16 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }, 'filetype'}
+            }, 'filetype' }
         },
         inactive_sections = {
-            lualine_a = {{
+            lualine_a = { {
                 'mode',
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }},
-            lualine_b = {{
+            } },
+            lualine_b = { {
                 'branch',
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -110,12 +110,12 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }},
-            lualine_c = {{
+            } },
+            lualine_c = { {
                 'filename',
-                file_status = true, -- Displays file status (readonly status, modified status)
+                file_status = true,     -- Displays file status (readonly status, modified status)
                 newfile_status = false, -- Display new file status (new file means no write after created)
-                path = 3, -- 0: Just the filename
+                path = 3,               -- 0: Just the filename
                 -- 1: Relative path
                 -- 2: Absolute path
                 -- 3: Absolute path, with tilde as the home directory
@@ -124,17 +124,17 @@ return {
                 shorting_target = 40, -- Shortens path to leave 40 spaces in the window
                 -- for other components. (terrible name, any suggestions?)
                 symbols = {
-                    modified = '[+]', -- Text to show when the file is modified.
-                    readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
+                    modified = '[+]',      -- Text to show when the file is modified.
+                    readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
                     unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                    newfile = '[New]' -- Text to show for newly created file before first write
+                    newfile = '[New]'      -- Text to show for newly created file before first write
                 },
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
 
-            }},
-            lualine_x = {{
+            } },
+            lualine_x = { {
                 'datetime',
                 -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
                 style = '%Y-%m-%d %H:%M:%S',
@@ -142,8 +142,8 @@ return {
                     return vim.bo.filetype ~= 'NvimTree'
                 end
 
-            }},
-            lualine_y = {{
+            } },
+            lualine_y = { {
                 customLocation,
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -153,8 +153,8 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }},
-            lualine_z = {{
+            } },
+            lualine_z = { {
                 'encoding',
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
@@ -164,12 +164,12 @@ return {
                 cond = function()
                     return vim.bo.filetype ~= 'NvimTree'
                 end
-            }, 'filetype'}
+            }, 'filetype' }
         },
         -- winbar = {
-        --     lualine_c = {{
+        --     lualine_c = { {
         --         'filename',
-        --         file_status = false, -- Displays file status (readonly status, modified status)
+        --         file_status = false,    -- Displays file status (readonly status, modified status)
         --         newfile_status = false, -- Display new file status (new file means no write after created)
         --         path = 0,
         --         cond = function()
@@ -179,12 +179,12 @@ return {
         --         "navic",
         --         color_correction = "static",
         --         navic_opts = nil
-        --     }}
+        --     } }
         -- },
         -- inactive_winbar = {
-        --     lualine_c = {{
+        --     lualine_c = { {
         --         'filename',
-        --         file_status = false, -- Displays file status (readonly status, modified status)
+        --         file_status = false,    -- Displays file status (readonly status, modified status)
         --         newfile_status = false, -- Display new file status (new file means no write after created)
         --         path = 0,
         --         cond = function()
@@ -194,7 +194,7 @@ return {
         --         "navic",
         --         color_correction = "static",
         --         navic_opts = nil
-        --     }}
+        --     } }
         -- }
     }
 }
