@@ -22,27 +22,27 @@ return {
                 center = {
                     key {
                         icon = "  ",
-                        desc = "FZF",
-                        key = "fw",
-                        action = "FzfLua"
+                        desc = "Telescope",
+                        key = "ts",
+                        action = "Telescope"
                     },
                     key {
                         icon = "  ",
                         desc = "Find Files",
                         key = "ff",
-                        action = "FzfLua files"
+                        action = "Telescope find_files"
                     },
                     key {
                         icon = "  ",
                         desc = "Recent Files",
-                        key = "ff",
-                        action = "FzfLua files"
+                        key = "rf",
+                        action = "Telescope oldfiles"
                     },
                     key {
                         icon = "  ",
                         desc = "Find Word",
-                        key = "fr",
-                        action = "FzfLua oldfiles"
+                        key = "fw",
+                        action = "Telescope live_grep"
                     },
                     key {
                         icon = "󰒲  ",
@@ -53,8 +53,8 @@ return {
                     key {
                         icon = "  ",
                         desc = "Help",
-                        key = "fh",
-                        action = "FzfLua help_tags"
+                        key = "th",
+                        action = "Telescope help_tags"
                     },
                     key {
                         icon = "󰗽  ",
