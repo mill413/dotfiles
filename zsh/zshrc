@@ -131,3 +131,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Shell wrapper of yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+    echo -e -n "\x1b[\x35 q"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
