@@ -146,26 +146,52 @@ local nvimTreeFocusOrToggle = function()
 end
 
 -- Open nvim-treee in startup
+local function open_nvim_tree(data)
+    -- buffer is a real file on the disk
+    local real_file = vim.fn.filereadable(data.file) == 1
+
+    -- buffer is a [No Name]
+    -- local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+    -- buffr is a directory
+    local dir = vim.fn.isdirectory(data.file) == 1
+
+    if not real_file and not dir then
+        return
+    end
+
+    -- open the tree, change directory to file
+    if dir then
+        vim.cmd.cd(data.file)
+        require("nvim-tree.api").tree.open()
+    end
+
+    -- open the tree, find the file
+    if real_file then
+        require("nvim-tree.api").tree.toggle({
+            focus = false,
+            find_file = true,
+        })
+    end
+end
 -- local function open_nvim_tree(data)
---     -- buffer is a real file on the disk
---     local real_file = vim.fn.filereadable(data.file) == 1
-
---     -- buffer is a [No Name]
---     local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-
---     if not real_file and not no_name then
---         return
---     end
-
---     -- open the tree, find the file
---     require("nvim-tree.api").tree.toggle({
---         focus = no_name,
---         find_file = true,
---     })
+--
+--   -- buffer is a directory
+--   local directory = vim.fn.isdirectory(data.file) == 1
+--
+--   if not directory then
+--     return
+--   end
+--
+--   -- change to the directory
+--   vim.cmd.cd(data.file)
+--
+--   -- open the tree
+--   require("nvim-tree.api").tree.open()
 -- end
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
---     callback = open_nvim_tree,
--- })
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    callback = open_nvim_tree,
+})
 
 
 -- Auto close TODO-关闭文件后不自动关闭tree
@@ -204,6 +230,11 @@ return {
         },
     },
     opts = {
+        hijack_netrw = true,
+        hijack_directories = {
+            enable = false,
+            auto_open = false,
+        },
         view = {
             side = "right",
             width = {
