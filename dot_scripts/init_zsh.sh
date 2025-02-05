@@ -75,4 +75,5 @@ sed -i.bak -E "s|^ZSH=.*$|ZSH=\"$INSTALL_PATH\"|" "$ZSHRC_FILE"
 # Notify the user of the successful update
 echo "zshrc file has been updated. ZSH variable is set to: $INSTALL_PATH"
 
+rm "$HOME/.zshrc"
 ln -sv "$PWD/zsh/zshrc" "$HOME/.zshrc"
