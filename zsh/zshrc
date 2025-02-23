@@ -113,7 +113,7 @@ fi
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
-
+export JAVA_HOME=/usr/lib/jvm/default
 source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
