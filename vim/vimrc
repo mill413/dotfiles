@@ -11,13 +11,13 @@ runtime! archlinux.vim
 
 set termguicolors
 
-let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:tokyonight_menu_selection_background = 'blue'
-let g:tokyonight_transparent_background = 0
+"let g:tokyonight_style = 'storm' " available: night, storm
+"let g:tokyonight_enable_italic = 1
+"let g:tokyonight_menu_selection_background = 'blue'
+"let g:tokyonight_transparent_background = 0
 let g:airline_theme = "tokyonight"
 
-colorscheme tokyonight
+"colorscheme tokyonight
 
 " Highlight current line and column
 set cursorline
@@ -136,10 +136,10 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 "" Youcompleteme
-let g:ycm_enable_inlay_hints=1
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_min_num_of_chars_for_completion=2
-let g:ycm_cache_omnifunc=0
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_enable_inlay_hints=1
+"let g:ycm_collect_identifiers_from_tags_files=1
+"let g:ycm_min_num_of_chars_for_completion=2
+"let g:ycm_cache_omnifunc=0
+"let g:ycm_seed_identifiers_with_syntax=1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
 "highlight Pmenu ctermfg=15 ctermbg=235
