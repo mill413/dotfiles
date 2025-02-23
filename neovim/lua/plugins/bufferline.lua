@@ -33,19 +33,19 @@ return {
                 end
                 return s
             end,
-            offsets = {{
+            offsets = { {
                 filetype = "NvimTree",
                 text = "Explorer",
                 highlight = "Directory",
                 text_align = "center"
-            }},
+            } },
             numbers = "ordinal",
             separator_style = "slant",
             right_mouse_command = false,
             hover = {
                 enabled = true,
                 delay = 200,
-                reveal = {"close"}
+                reveal = { "close" }
             },
             tab_size = 12,
             close_command = ":bdelete",

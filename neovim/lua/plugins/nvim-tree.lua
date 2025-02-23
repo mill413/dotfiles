@@ -162,8 +162,11 @@ local function open_nvim_tree(data)
 
     -- open the tree, change directory to file
     if dir then
+        vim.cmd.enew()
+        vim.cmd.bw(data.buf)
         vim.cmd.cd(data.file)
         require("nvim-tree.api").tree.open()
+        return
     end
 
     -- open the tree, find the file
@@ -172,6 +175,7 @@ local function open_nvim_tree(data)
             focus = false,
             find_file = true,
         })
+        return
     end
 end
 -- local function open_nvim_tree(data)
@@ -237,9 +241,10 @@ return {
         },
         view = {
             side = "right",
-            width = {
-                max = 42,
-            },
+            -- width = {
+            --     max = 42,
+            -- },
+            width = 42,
             adaptive_size = true,
         },
         renderer = {

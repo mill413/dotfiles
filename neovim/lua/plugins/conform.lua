@@ -29,12 +29,12 @@ return {
             -- stylua = {
             --     command = vim.fn.expand("~") .. ".local/share/nvim/mason/bin/stylua"
             -- },
-            -- autopep8 = {
-            --     command = vim.fn.expand("~") .. ".local/share/nvim/mason/bin/autopep8"
-            -- },
-            -- isort = {
-            --     command = vim.fn.expand("~") .. ".local/share/nvim/mason/bin/isort"
-            -- }
+            autopep8 = {
+                command = vim.fn.expand("~") .. ".local/share/nvim/mason/bin/autopep8"
+            },
+            isort = {
+                command = vim.fn.expand("~") .. ".local/share/nvim/mason/bin/isort"
+            }
         },
     },
     keys = {
